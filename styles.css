@@ -1,0 +1,249 @@
+body {
+    font-family: Franklin Gothic Medium;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    transition: background-color 0.5s ease;
+}
+
+.host-inputs {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.puzzle-board {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.puzzle-board-horizontal {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.puzzle-board-horizontal .letter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border: 1px solid #000;
+    margin: 2px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.puzzle-board .letter {
+    border: 1px solid #333;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2px;
+    font-size: 32px;
+    font-weight: bold;
+    background-color: #fff;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.puzzle-board .letter.revealed {
+    color: #000;
+    background-color: #fff;
+}
+
+.puzzle-board .letter.space {
+    background-color: #000;
+    color: #000;
+}
+
+#vowelList {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#vowelList ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#vowelList li {
+    display: inline-block;
+    margin: 0 5px;
+    font-size: 18px;
+}
+
+#vowelList li.struckthrough {
+    text-decoration: line-through;
+    color: #999;
+}
+
+#continueButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+#roundLabel {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#roundLabel .category {
+    margin-top: 5px;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+#vowelList {
+    margin-bottom: 30px;
+}
+
+#vowelSection {
+    text-align: center;
+}
+
+#vowelSection h2 {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#vowelList {
+    list-style: none;
+    padding: 0;
+    display: inline-block;
+}
+
+#vowelList li {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+input[type="password"] {
+    font-size: 16px;
+    padding: 5px;
+    margin: 5px 0;
+    width: 200px;
+    box-sizing: border-box;
+}
+
+.host-inputs div {
+    margin-bottom: 20px;
+}
+
+.host-inputs, .puzzle-board, #vowelList, #continueButton, #bonusRoundSelection {
+    margin-bottom: 20px;
+}
+
+.letter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    border: 1px solid #000;
+    width: 60px;
+    height: 60px;
+    font-size: 32px;
+    text-align: center;
+}
+
+.space {
+    border: none;
+    background-color: transparent;
+}
+
+.revealed {
+    background-color: #ffff00;
+}
+
+.struckthrough {
+    text-decoration: line-through;
+}
+
+.centered {
+    text-align: center;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bonusButton {
+    font-size: 24px;
+    padding: 20px;
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+#bonusRoundSelection h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.bonusButton-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.bonus-round-inputs {
+    text-align: center;
+}
+
+/* Add this CSS for the horizontal layout */
+.puzzle-board-horizontal {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.puzzle-board-horizontal .letter {
+    display: inline-block;
+    width: 60px; /* Adjust the width as needed */
+    height: 60px; /* Adjust the height as needed */
+    text-align: center;
+    line-height: 60px; /* Center the text vertically */
+    border: 1px solid #000; /* Add a border if needed */
+    margin: 2px; /* Adjust the margin as needed */
+}
+
+.puzzle-board-horizontal .space {
+    background-color: transparent;
+    border: none;
+}
+
+/* Add this CSS for the bonus round layout */
+.bonus-round {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.bonus-round .letter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border: 1px solid #000;
+    margin: 2px;
+    font-size: 32px;
+    text-align: center;
+}

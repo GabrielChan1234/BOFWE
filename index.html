@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortune Series: Wheel</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .host-inputs {
+            position: relative;
+            padding: 20px;
+            border: 2px solid gold;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 25%, rgba(255, 215, 0, 0) 25%) -50px 0,
+                        linear-gradient(225deg, rgba(255, 215, 0, 0.1) 25%, rgba(255, 215, 0, 0) 25%) -50px 0,
+                        linear-gradient(315deg, rgba(255, 215, 0, 0.1) 25%, rgba(255, 215, 0, 0) 25%),
+                        linear-gradient(45deg, rgba(255, 215, 0, 0.1) 25%, rgba(255, 215, 0, 0) 25%);
+            background-size: 100px 100px;
+            background-color: #fff8dc; /* light golden background */
+            box-shadow: 0 0 10px gold;
+            color: black; /* Set text color to black */
+        }
+        .host-inputs h1 {
+            text-align: center;
+            color: black; /* Set text color to black */
+        }
+        .host-inputs label {
+            color: black; /* Set text color to black */
+        }
+        .host-inputs input {
+            border: 1px solid gold;
+            color: black; /* Set text color to black */
+        }
+        #bonusRoundSelection {
+            text-align: center;
+        }
+        .bonusButton-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px; /* Space between buttons */
+        }
+        .bonusButton {
+            padding: 15px 25px;
+            border: 2px solid gold;
+            background-color: #f8f8f8;
+            color: black;
+            font-size: 16px;
+            text-align: center;
+            width: 500px; /* Fixed width for rectangular shape */
+            height: 50px; /* Fixed height for rectangular shape */
+            text-overflow: ellipsis; /* Handle overflowed text */
+            white-space: normal; /* Allow text to wrap */
+            overflow: hidden; /* Hide overflowed text */
+            box-sizing: border-box; /* Include border in width/height */
+            border-radius: 0; /* Remove rounded corners */
+        }
+        .bonusButton:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="host-inputs">
+        <h1>Box of Fortune: Wheel Edition™️</h1>
+        <div>
+            <label for="warmUp">WR:</label>
+            <input type="password" id="warmUp">
+            <label for="warmUpCategory"></label>
+            <input type="password" id="warmUpCategory">
+        </div>
+        <div>
+            <label for="puzzle1">R1:</label>
+            <input type="password" id="puzzle1">
+            <label for="puzzle1Category"></label>
+            <input type="password" id="puzzle1Category">
+        </div>
+        <div>
+            <label for="puzzle2">R2:</label>
+            <input type="password" id="puzzle2">
+            <label for="puzzle2Category"></label>
+            <input type="password" id="puzzle2Category">
+        </div>
+        <div>
+            <label for="puzzle3">R3:</label>
+            <input type="password" id="puzzle3">
+            <label for="puzzle3Category"></label>
+            <input type="password" id="puzzle3Category">
+        </div>
+        <div>
+            <label for="puzzle4">R4:</label>
+            <input type="password" id="puzzle4">
+            <label for="puzzle4Category"></label>
+            <input type="password" id="puzzle4Category">
+        </div>
+        <div class="bonus-round-inputs">
+            <div>
+                <label for="bonus1">B1:</label>
+                <input type="password" id="bonus1">
+                <label for="bonus1Category"></label>
+                <input type="password" id="bonus1Category">
+            </div>
+            <div>
+                <label for="bonus2">B2:</label>
+                <input type="password" id="bonus2">
+                <label for="bonus2Category"></label>
+                <input type="password" id="bonus2Category">
+            </div>
+            <div>
+                <label for="bonus3">B3:</label>
+                <input type="password" id="bonus3">
+                <label for="bonus3Category"></label>
+                <input type="password" id="bonus3Category">
+            </div>
+        </div>
+        <button onclick="startGame()">▶️</button>
+                <p>©️ LSC 2024</p>
+        <button id="stopButton" onclick="stopWarmUp()" style="display:none;">Stop</button>
+    </div>
+    <div class="puzzle-board" id="puzzleBoard">
+        <!-- Puzzle will be dynamically displayed here -->
+    </div>
+    <ul id="vowelList" style="display:none;">
+        <li data-letter="A">A</li>
+        <li data-letter="E">E</li>
+        <li data-letter="I">I</li>
+        <li data-letter="O">O</li>
+        <li data-letter="U">U</li>
+    </ul>
+    <button id="continueButton" onclick="nextRound()" style="display:none;">Continue</button>
+    <div id="bonusRoundSelection" class="centered" style="display:none;">
+        <h2>Select Bonus Round</h2>
+        <div class="bonusButton-container">
+            <button class="bonusButton" id="bonusButton1" onclick="selectBonusRound(1)">Bonus Round 1</button>
+            <button class="bonusButton" id="bonusButton2" onclick="selectBonusRound(2)">Bonus Round 2</button>
+            <button class="bonusButton" id="bonusButton3" onclick="selectBonusRound(3)">Bonus Round 3</button>
+        </div>
+    </div>
+    <div class="puzzle-board bonus-round" id="bonusRoundBoard" style="display:none;">
+        <!-- Bonus round puzzle will be dynamically displayed here -->
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
