@@ -1,5 +1,5 @@
 body {
-    font-family: Franklin Gothic Medium;
+    font-family: monospace;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,6 +13,7 @@ body {
 .host-inputs {
     margin-bottom: 20px;
     text-align: center;
+    min-width: 50vh;
 }
 
 .puzzle-board {
@@ -29,17 +30,30 @@ body {
     margin-bottom: 20px;
 }
 
-.puzzle-board-horizontal .letter {
+.puzzle-board-horizontal .letter,
+.puzzle-board-horizontal .space {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 60px;
-    height: 60px;
-    border: 1px solid #000;
-    margin: 2px;
-    font-size: 24px;
+    width: 50px; /* Ensure both have the same size */
+    height: 50px;
+    border: 1px solid black; /* Optional for white squares */
+    box-sizing: border-box;
+    margin: 0; /* Reset any margin differences */
+    vertical-align: middle; /* Ensure alignment with text */
+    font-size: 20px; /* Same font size */
+    line-height: 50px; /* Match to height of the squares */
     text-align: center;
 }
+
+.puzzle-board-horizontal .space {
+    background-color: black;
+}
+
+.puzzle-board-horizontal .letter {
+    background-color: white;
+}
+
 
 .puzzle-board .letter {
     border: 1px solid #333;
@@ -88,8 +102,9 @@ body {
 }
 
 #continueButton {
+    border: none;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 24px;
     cursor: pointer;
     margin-bottom: 20px;
 }
@@ -149,19 +164,37 @@ input[type="password"] {
 
 .letter {
     display: flex;
-    align-items: center;
     justify-content: center;
-    margin: 5px;
-    border: 1px solid #000;
-    width: 60px;
-    height: 60px;
-    font-size: 32px;
-    text-align: center;
+    align-items: center;
+    width: 50px; /* Consistent width for all squares */
+    height: 50px; /* Consistent height for all squares */
+    font-size: 24px;
+    margin: 5px; /* Spacing between squares */
+    border: 1px solid black;
+    background-color: white; /* White for regular letters */
+    font-weight: bold;
 }
 
 .space {
-    border: none;
-    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px; /* Match the letter width */
+    height: 50px; /* Match the letter height */
+    margin: 5px; /* Match the letter margin */
+    background-color: black; /* Black for spaces */
+    border: 1px solid black; /* Match the letter border */
+}
+
+.letter, .space {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px; /* Ensure consistent width */
+    height: 50px; /* Ensure consistent height */
+    margin: 5px; /* Ensure consistent spacing */
+    border: 1px solid black;
+    box-sizing: border-box; /* Include padding and border in dimensions */
 }
 
 .revealed {
@@ -228,6 +261,12 @@ input[type="password"] {
     border: none;
 }
 
+#puzzleBoard {
+    display: flex;
+    align-items: center; /* Center all squares horizontally */
+    justify-content: center; /* Optional, for vertical centering within the container */
+}
+
 /* Add this CSS for the bonus round layout */
 .bonus-round {
     display: flex;
@@ -236,14 +275,80 @@ input[type="password"] {
     margin-bottom: 20px;
 }
 
+.bonus-round .space, 
 .bonus-round .letter {
+    margin: 0; /* Remove unintended vertical offsets */
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 60px;
-    height: 60px;
-    border: 1px solid #000;
-    margin: 2px;
-    font-size: 32px;
+    width: 50px;
+    height: 50px;
+    box-sizing: border-box;
+}
+
+
+button {
+    font-family: Helvetica;
+    border: none;
+    font-size: 24px;
+    background-color: transparent
+
+}
+
+button {
+    margin-top: 10px;
+    margin-right: 50px;
+    margin-left: 50px;
+    margin-bottom: 10px;
+    cursor: pointer; /* Change the cursor to a hand on hover */
+}
+
+
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    
+  
+100% {
+        
+  
+opacity: 1;
+    }
+}
+
+label {
+    
+ 
+animation: fadeIn 1s ease-in-out;
+}
+
+#consonantList {
+    margin-top: 20px;
     text-align: center;
 }
+
+#consonantList ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#consonantList li {
+    display: inline-block;
+    margin: 0 5px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+#consonantList li.struckthrough {
+    text-decoration: line-through;
+    color: gray;
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+}
+
+
