@@ -6,6 +6,12 @@ let roundLabels = ["WARM-UP ROUND", "ROUND ONE", "ROUND TWO", "ROUND THREE", "RO
 let vowels = ['A', 'E', 'I', 'O', 'U'];
 let autoRevealInterval;
 const defaultRevealedLetters = ['R', 'S', 'T', 'L', 'N', 'E'];
+const consonants = [
+    'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 
+    'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z'
+];
+
+
 
 function startGame() {
     document.querySelector('.host-inputs').style.display = 'none';
@@ -42,6 +48,7 @@ function startGame() {
     // Display the round label and category
     displayRoundLabel(roundLabels[currentRound], categories[currentRound]);
     displayVowelList(); // Show the vowel list for the round
+    displayConsonantList();
 
     // Start automatic letter reveals for the warm-up round
     autoRevealLetters();
@@ -68,7 +75,7 @@ function displayRoundLabel(roundLabel, category) {
 
     let roundLabelElement = document.createElement('div');
     roundLabelElement.id = 'roundLabel';
-    roundLabelElement.innerHTML = `<strong>${roundLabel}</strong><br><strong>Category:</strong> ${category || ''}`;
+    roundLabelElement.innerHTML = `<strong>${roundLabel}</strong><br><strong>CATEGORY:</strong> ${category || ''}`;
     document.body.insertBefore(roundLabelElement, document.querySelector('.puzzle-board'));
 }
 
@@ -96,12 +103,20 @@ function displayPuzzle(puzzle, horizontal = false) {
 
 function displayVowelList() {
     const vowelList = document.getElementById('vowelList');
-    const listItems = vowelList.querySelectorAll('li');
-    listItems.forEach(li => {
-        li.classList.remove('struckthrough'); // Reset strikethrough on each round
-    });
-    vowelList.style.display = 'block'; // Show the vowel list
+
+    // Hide the vowel list for warm-up and bonus rounds
+    if (currentRound === 0 || currentRound >= 5) {
+        vowelList.style.display = 'none';
+    } else {
+        // Show the vowel list for regular rounds
+        const listItems = vowelList.querySelectorAll('li');
+        listItems.forEach(li => {
+            li.classList.remove('struckthrough'); // Reset strikethrough on each round
+        });
+        vowelList.style.display = 'block';
+    }
 }
+
 
 function handleKeyPress(event) {
     const letter = event.key.toUpperCase();
@@ -115,13 +130,14 @@ function handleKeyPress(event) {
 
         if (isVowel(letter)) {
             markVowelAsGuessed(letter);
+        } else if (isConsonant(letter)) {
+            markConsonantAsGuessed(letter);
         }
 
         if (checkIfPuzzleSolved()) {
             if (currentRound < 5) { // Show continue button only if it's not a bonus round
                 document.getElementById('continueButton').style.display = 'block';
             } else {
-                // Send game over request
                 sendGameOverRequest();
             }
         }
@@ -129,6 +145,7 @@ function handleKeyPress(event) {
         flashScreenRed();
     }
 }
+
 
 function revealLetters(letter) {
     const puzzleBoard = document.getElementById('puzzleBoard');
@@ -204,6 +221,10 @@ function nextRound() {
             // Bonus rounds
             removePreviousRoundElements();
             document.getElementById('bonusRoundSelection').style.display = 'block';
+            
+            // Hide the consonant list when in the bonus round selection screen
+            const consonantList = document.getElementById('consonantList');
+            consonantList.style.display = 'none'; // Hide consonant list on bonus round selection screen
         } else {
             // Regular rounds
             revealedLetters = [];
@@ -214,6 +235,7 @@ function nextRound() {
 
             // Reset vowel list and continue button visibility
             displayVowelList();
+            displayConsonantList();
             document.getElementById('continueButton').style.display = 'none';
 
             // Start automatic letter reveals for the warm-up round
@@ -236,6 +258,7 @@ function nextRound() {
         sendGameOverRequest();
     }
 }
+
 
 function removePreviousRoundElements() {
     // Remove round label
@@ -271,6 +294,7 @@ function selectBonusRound(bonusRoundNumber) {
 
     // Reset vowel list and continue button visibility
     displayVowelList();
+    displayConsonantList();
     document.getElementById('continueButton').style.display = 'none';
 
     // Hide the bonus round selection
@@ -300,4 +324,44 @@ function sendGameOverRequest() {
     // }).catch(error => {
     //     console.error('Error:', error);
     // });
+}
+
+function toggleLabels() {
+        const labels = document.querySelectorAll('.input-label');
+        labels.forEach(label => {
+            if (label.style.display === 'inline') {
+                label.style.display = 'none'; // Hide the label if it's visible
+            } else {
+                label.style.display = 'inline'; // Show the label if it's hidden
+            }
+        });
+    }
+
+function displayConsonantList() {
+    const consonantList = document.getElementById('consonantList');
+
+    // Hide the consonant list for warm-up and bonus rounds
+    if (currentRound === 0 || currentRound >= 5) {
+        consonantList.style.display = 'none';
+    } else {
+        // Show the consonant list for regular rounds
+        const listItems = consonantList.querySelectorAll('li');
+        listItems.forEach(li => {
+            li.classList.remove('struckthrough'); // Reset strikethrough on each round
+        });
+        consonantList.style.display = 'block';
+    }
+}
+
+function markConsonantAsGuessed(letter) {
+    const consonantListItems = document.getElementById('consonantList').querySelectorAll('li');
+    consonantListItems.forEach(item => {
+        if (item.textContent === letter) {
+            item.classList.add('struckthrough');
+        }
+    });
+}
+
+function isConsonant(letter) {
+    return consonants.includes(letter);
 }
