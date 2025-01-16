@@ -3,20 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fortune Series: Wheel</title>
+    <title>BOFWE</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         .host-inputs {
             position: relative;
             padding: 20px;
-            border: 2px solid gold;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 25%, rgba(255, 215, 0, 0) 25%) -50px 0,
-                        linear-gradient(225deg, rgba(255, 215, 0, 0.1) 25%, rgba(255, 215, 0, 0) 25%) -50px 0,
-                        linear-gradient(315deg, rgba(255, 215, 0, 0.1) 25%, rgba(255, 215, 0, 0) 25%),
-                        linear-gradient(45deg, rgba(255, 215, 0, 0.1) 25%, rgba(255, 215, 0, 0) 25%);
+            border: 2px solid black;
             background-size: 100px 100px;
-            background-color: #fff8dc; /* light golden background */
-            box-shadow: 0 0 10px gold;
+            background-color: #ffffff; /* light golden background */
+            box-shadow: 0 0 10px white;
             color: black; /* Set text color to black */
         }
         .host-inputs h1 {
@@ -27,7 +23,7 @@
             color: black; /* Set text color to black */
         }
         .host-inputs input {
-            border: 1px solid gold;
+            border: 1px solid black;
             color: black; /* Set text color to black */
         }
         #bonusRoundSelection {
@@ -41,7 +37,7 @@
         }
         .bonusButton {
             padding: 15px 25px;
-            border: 2px solid gold;
+            border: 2px solid black;
             background-color: #f8f8f8;
             color: black;
             font-size: 16px;
@@ -57,65 +53,71 @@
         .bonusButton:hover {
             background-color: #e0e0e0;
         }
+        .input-label {
+        display: none; /* Initially hide all labels */
+    }
     </style>
 </head>
+        
 <body>
-    <div class="host-inputs">
-        <h1>Box of Fortune: Wheel Edition™️</h1>
+        
+    <div class="host-inputs hidden-labels">
+    <button onclick="startGame()">+</button>
+    <button onclick="toggleLabels()">?</button>
+    <div>
+        <label for="warmUp" class="input-label">WR</label>
+        <input type="password" id="warmUp">
+        <label for="warmUpCategory" class="input-label"></label>
+        <input type="password" id="warmUpCategory">
+    </div>
+    <div>
+        <label for="puzzle1" class="input-label">R1</label>
+        <input type="password" id="puzzle1">
+        <label for="puzzle1Category" class="input-label"></label>
+        <input type="password" id="puzzle1Category">
+    </div>
+    <div>
+        <label for="puzzle2" class="input-label">R2</label>
+        <input type="password" id="puzzle2">
+        <label for="puzzle2Category" class="input-label"></label>
+        <input type="password" id="puzzle2Category">
+    </div>
+    <div>
+        <label for="puzzle3" class="input-label">R3</label>
+        <input type="password" id="puzzle3">
+        <label for="puzzle3Category" class="input-label"></label>
+        <input type="password" id="puzzle3Category">
+    </div>
+    <div>
+        <label for="puzzle4" class="input-label">R4</label>
+        <input type="password" id="puzzle4">
+        <label for="puzzle4Category" class="input-label"></label>
+        <input type="password" id="puzzle4Category">
+    </div>
+    <div class="bonus-round-inputs">
         <div>
-            <label for="warmUp">WR:</label>
-            <input type="password" id="warmUp">
-            <label for="warmUpCategory"></label>
-            <input type="password" id="warmUpCategory">
+            <label for="bonus1" class="input-label">B1</label>
+            <input type="password" id="bonus1">
+            <label for="bonus1Category" class="input-label"></label>
+            <input type="password" id="bonus1Category">
         </div>
         <div>
-            <label for="puzzle1">R1:</label>
-            <input type="password" id="puzzle1">
-            <label for="puzzle1Category"></label>
-            <input type="password" id="puzzle1Category">
+            <label for="bonus2" class="input-label">B2</label>
+            <input type="password" id="bonus2">
+            <label for="bonus2Category" class="input-label"></label>
+            <input type="password" id="bonus2Category">
         </div>
         <div>
-            <label for="puzzle2">R2:</label>
-            <input type="password" id="puzzle2">
-            <label for="puzzle2Category"></label>
-            <input type="password" id="puzzle2Category">
+            <label for="bonus3" class="input-label">B3</label>
+            <input type="password" id="bonus3">
+            <label for="bonus3Category" class="input-label"></label>
+            <input type="password" id="bonus3Category">
         </div>
-        <div>
-            <label for="puzzle3">R3:</label>
-            <input type="password" id="puzzle3">
-            <label for="puzzle3Category"></label>
-            <input type="password" id="puzzle3Category">
-        </div>
-        <div>
-            <label for="puzzle4">R4:</label>
-            <input type="password" id="puzzle4">
-            <label for="puzzle4Category"></label>
-            <input type="password" id="puzzle4Category">
-        </div>
-        <div class="bonus-round-inputs">
-            <div>
-                <label for="bonus1">B1:</label>
-                <input type="password" id="bonus1">
-                <label for="bonus1Category"></label>
-                <input type="password" id="bonus1Category">
-            </div>
-            <div>
-                <label for="bonus2">B2:</label>
-                <input type="password" id="bonus2">
-                <label for="bonus2Category"></label>
-                <input type="password" id="bonus2Category">
-            </div>
-            <div>
-                <label for="bonus3">B3:</label>
-                <input type="password" id="bonus3">
-                <label for="bonus3Category"></label>
-                <input type="password" id="bonus3Category">
-            </div>
-        </div>
-        <button onclick="startGame()">▶️</button>
-                <p>©️ LSC 2024</p>
+    </div>
+            <p>© LSC 2025 BOFWE</p>
         <button id="stopButton" onclick="stopWarmUp()" style="display:none;">Stop</button>
     </div>
+    
     <div class="puzzle-board" id="puzzleBoard">
         <!-- Puzzle will be dynamically displayed here -->
     </div>
@@ -126,9 +128,35 @@
         <li data-letter="O">O</li>
         <li data-letter="U">U</li>
     </ul>
-    <button id="continueButton" onclick="nextRound()" style="display:none;">Continue</button>
+    
+    <ul id="consonantList" style="display: none;">
+        <li data-letter="B">B</li>
+        <li data-letter="C">C</li>
+        <li data-letter="D">D</li>
+        <li data-letter="F">F</li>
+        <li data-letter="G">G</li>
+        <li data-letter="H">H</li>
+        <li data-letter="J">J</li>
+        <li data-letter="K">K</li>
+        <li data-letter="L">L</li>
+        <li data-letter="M">M</li>
+        <li data-letter="N">N</li>
+        <li data-letter="P">P</li>
+        <li data-letter="Q">Q</li>
+        <li data-letter="R">R</li>
+        <li data-letter="S">S</li>
+        <li data-letter="T">T</li>
+        <li data-letter="V">V</li>
+        <li data-letter="W">W</li>
+        <li data-letter="X">X</li>
+        <li data-letter="Y">Y</li>
+        <li data-letter="Z">Z</li>
+    </ul>
+
+
+    <button id="continueButton" onclick="nextRound()" style="display:none;">+</button>
     <div id="bonusRoundSelection" class="centered" style="display:none;">
-        <h2>Select Bonus Round</h2>
+        <h2>SELECT BONUS ROUND</h2>
         <div class="bonusButton-container">
             <button class="bonusButton" id="bonusButton1" onclick="selectBonusRound(1)">Bonus Round 1</button>
             <button class="bonusButton" id="bonusButton2" onclick="selectBonusRound(2)">Bonus Round 2</button>
